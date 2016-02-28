@@ -1,0 +1,33 @@
+{
+  "name": "tell-tally",
+  "version": "0.0.1",
+  "description": "CLI to explore how much was spent on stuff. E.g. shopping, coffee, transport etc..",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ezodude/tell-tally.git"
+  },
+  "keywords": [
+    "highland.js",
+    "streams",
+    "personal",
+    "finance"
+  ],
+  "author": "Ezo Saleh <npm@ezosaleh.com> (http://ezosaleh.com/)",
+  "license": "GPL-3.0",
+  "preferGlobal": true,
+  "bin": {
+    "tt": "index.js"
+  },
+  "bugs": {
+    "url": "https://github.com/ezodude/tell-tally/issues"
+  },
+  "homepage": "https://github.com/ezodude/tell-tally#readme",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "commander": "^2.9.0"
+  }
+}
