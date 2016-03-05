@@ -2,8 +2,8 @@
 
 'use strict';
 
-let program   = require('commander')
-  , chalk     = require('chalk');
+const program   = require('commander')
+    , chalk     = require('chalk');
 
 program
 .usage('[options] <file>')
@@ -12,7 +12,7 @@ program
 .option('-h, --household', 'Will tally household expenditure.')
 .option('-c, --coffee', 'Will tally coffee expenditure.')
 .option('-t, --transport', 'Will tally transport expenditure.')
-.action(function(file) {
+.action(file => {
 
   console.log(chalk.inverse.blue(">|>| YOUR TALLY |<|<"));
   console.log(chalk.bold.magenta("Start date    :" + "2016-02-28T00:00:00Z"));
