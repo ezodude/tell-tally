@@ -9,9 +9,9 @@ program
 .usage('[options] <file>')
 .arguments('<file>')
 .option('-s, --start-date <ISODate>', 'Tally start date.')
-.option('-h, --household', 'Will tally household expenditure.')
-.option('-c, --coffee', 'Will tally coffee expenditure.')
-.option('-t, --transport', 'Will tally transport expenditure.')
+.option('-h, --household', 'Will tally household expenses.')
+.option('-c, --coffee-out', 'Will tally coffee out expenses.')
+.option('-t, --transport', 'Will tally transport expenses.')
 .action(file => {
 
   console.log(chalk.inverse.blue(">|>| YOUR TALLY |<|<"));
