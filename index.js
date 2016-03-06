@@ -10,6 +10,7 @@ program
 .arguments('<file>')
 .option('-s, --start-date <ISODate>', 'Tally start date.')
 .option('-h, --household', 'Will tally household expenses.')
+.option('-e, --eating-out', 'Will tally household expenses.')
 .option('-c, --coffee-out', 'Will tally coffee out expenses.')
 .option('-t, --transport', 'Will tally transport expenses.')
 .action(file => {
