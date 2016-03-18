@@ -7,9 +7,7 @@ const csv     = require('fast-csv')
     , config  = require('config')
     , chalk   = require('chalk')
     , h       = require('highland')
-    , _       = require('lodash');
-
-const RBS_CHARGE_TYPES = ['DPC', 'POS', 'S/O', 'D/D'];
+    , rbsParser = require('./plugins/rbs').parser;
 
 program
 .usage('[options] <file>')
@@ -29,18 +27,10 @@ program
   });
 
   h(base)
-  .map(row => {
-    const description = row[2].split(',')[1];
-    return {
-      date: row[0].trim(),
-      type: row[1].trim(),
-      description: _.isString(description) ? description.toLowerCase().trim() : null,
-      value: Number.parseFloat(row[3], 10)
-    }
-  })
-  .filter(row => _.includes(RBS_CHARGE_TYPES, row.type))
+  .through(rbsParser)
   .doto(console.log)
   .collect()
+  .stopOnError( console.log )
   .each((rows) => { console.log('READING DONE!') });
 
   console.log(chalk.inverse.blue(">|>| YOUR TALLY |<|<"));
