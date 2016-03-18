@@ -3,6 +3,7 @@
 'use strict';
 
 const program   = require('commander')
+    , config = require('config')
     , chalk     = require('chalk');
 
 program
@@ -20,6 +21,6 @@ program
   console.log(chalk.green("Household     :" + "£200.00"));
   console.log(chalk.green("Coffee        :" + "£30.00"));
   console.log(chalk.green("Transport     :" + "£25.00"));
-
+  console.log(chalk.green("Config (prufrock )     :" + config.get('coffee_out.prufrock_coffee_limited')));
 })
 .parse(process.argv);

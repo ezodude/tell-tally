@@ -1,23 +1,23 @@
 [coffee_out]
-prufrock_coffee_limited = prufrock
-origin_coffee_(holdings)_limited = "origin coffee"
-trcu_coffee_concepts_limited = "espresso room"
-the_coffeeworks_project_ltd = "the coffeeworks"
-ocr_(london)_limited_partnership = "ozone coffee roast"
-ace_hotel = "ace hotel"
+"prufrock_coffee_limited" = "prufrock"
+"origin_coffee_(holdings)_limited" = "origin coffee"
+"trcu_coffee_concepts_limited" = "espresso room"
+"the_coffeeworks_project_ltd" = "the coffeeworks"
+"ocr_(london)_limited_partnership" = "ozone coffee roast"
+"ace_hotel" = "ace hotel"
 
 [eating_out]
-abokado_ltd = abokado
-pizza_pilgrims_ltd = "pizza pilgrims"
+"abokado_ltd" = "abokado"
+"pizza_pilgrims_ltd" = "pizza pilgrims"
 
 [household]
-geranium = geranium
-chegworth_valley_limited = "www.chegworthvalle"
-waitrose_limited = waitrose
-j_sainsbury_plc = sainsburys
-prufrock_coffee_limited = "prufrock coffee"
-planet_organic_limited = "planet organic"
-moxons_fresh_fish_limited = "moxons fresh fish"
+"geranium" = "geranium"
+"chegworth_valley_limited" = "www.chegworthvalle"
+"waitrose_limited" = "waitrose"
+"j_sainsbury_plc" = "sainsburys"
+"prufrock_coffee_limited" = "prufrock coffee"
+"planet_organic_limited" = "planet organic"
+"moxons_fresh_fish_limited" = "moxons fresh fish"
 
 [transport]
-transport_for_london = "tfl.gov.uk/cp"
+"transport_for_london" = "tfl.gov.uk/cp"
