@@ -7,7 +7,7 @@ const csv     = require('fast-csv')
     , config  = require('config')
     , chalk   = require('chalk')
     , h       = require('highland')
-    , rbsParser = require('./providers/rbs').parser;
+    , charges = require('./providers/rbs').charges;
 
 program
 .usage('[options] <file>')
@@ -27,7 +27,7 @@ program
   });
 
   h(base)
-  .through(rbsParser)
+  .through(charges)
   .doto(console.log)
   .collect()
   .stopOnError( console.log )
