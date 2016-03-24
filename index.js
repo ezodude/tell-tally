@@ -7,7 +7,7 @@ const csv     = require('fast-csv')
     , config  = require('config')
     , chalk   = require('chalk')
     , h       = require('highland')
-    , rbsParser = require('./plugins/rbs').parser;
+    , rbsParser = require('./providers/rbs').parser;
 
 program
 .usage('[options] <file>')
