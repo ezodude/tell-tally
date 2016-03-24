@@ -2,12 +2,12 @@
 
 'use strict';
 
-const csv     = require('fast-csv')
-    , program = require('commander')
-    , config  = require('config')
-    , chalk   = require('chalk')
-    , h       = require('highland')
-    , charges = require('./providers/rbs').charges;
+const csv           = require('fast-csv')
+    , program       = require('commander')
+    , config        = require('config')
+    , chalk         = require('chalk')
+    , h             = require('highland')
+    , chargeStream  = require('./providers/rbs').chargeStream;
 
 program
 .usage('[options] <file>')
@@ -27,7 +27,7 @@ program
   });
 
   h(base)
-  .through(charges)
+  .through(chargeStream)
   .doto(console.log)
   .collect()
   .stopOnError( console.log )
