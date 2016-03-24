@@ -16,14 +16,14 @@ const transforms = {
     }
   },
 
-  charges(c) {
+  chargesOnly(c) {
     return _.includes(RBS_CHARGE_TYPES, c.type)
   }
 };
 
 module.exports = h.pipeline(
   h.map(transforms.baseline),
-  h.filter(transforms.charges)
+  h.filter(transforms.chargesOnly)
 );
 
 module.exports.transforms = transforms;
