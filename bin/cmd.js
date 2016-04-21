@@ -14,13 +14,14 @@ const add = function (a, b) {
 };
 
 program
-.usage('[options] <file>')
+.usage('[options] <transactions.csv>')
+.description('Calculate your spending from a transactions or statement csv.')
 .arguments('<file>')
-.option('-s, --start-date <ISODate>', 'Tally start date.')
-.option('-h, --household', 'Will tally household expenses.')
-.option('-e, --eating-out', 'Will tally household expenses.')
-.option('-c, --coffee-out', 'Will tally coffee out expenses.')
-.option('-t, --transport', 'Will tally transport expenses.')
+.option('-s, --start-date <ISODate>', 'Calculation start date.')
+.option('-h, --household', 'Calculate household expenses.')
+.option('-e, --eating-out', 'Calculate household expenses.')
+.option('-c, --coffee-out', 'Calculate coffee out expenses.')
+.option('-t, --transport', 'Calculate transport expenses.')
 .action(file => {
   const base = csv.fromPath(file, {
     objectMode: true,
