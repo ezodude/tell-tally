@@ -7,11 +7,8 @@ const csv           = require('fast-csv')
     , config        = require('config')
     , chalk         = require('chalk')
     , h             = require('highland')
-    , chargeStream  = require('./../providers/rbs').chargeStream;
-
-const add = function (a, b) {
-  return a + (b.value * -1);
-};
+    , chargeStream  = require('./../providers/rbs').chargeStream
+    , telltally  = require('../');
 
 program
 .usage('[options] <transactions.csv>')
@@ -23,21 +20,9 @@ program
 .option('-c, --coffee-out', 'Calculate coffee out expenses.')
 .option('-t, --transport', 'Calculate transport expenses.')
 .action(file => {
-  const base = csv.fromPath(file, {
-    objectMode: true,
-    headers: true,
-    discardUnmappedColumns: true ,
-    ignoreEmpty: true,
-    trim: true
-  });
 
-  h(base)
-  .through(chargeStream)
-  .reduce(0, add)
-  .doto(console.log)
-  // .collect()
-  .stopOnError( console.log )
-  .each((rows) => { console.log('READING DONE!') });
+  const tt = telltally(file, { startDate: program.startDate });
+  console.log('tt.startDate', tt.startDate);
 
   console.log(chalk.inverse.blue(">|>| YOUR TALLY |<|<"));
   console.log(chalk.bold.magenta("Start date    :" + "2016-02-28T00:00:00Z"));
