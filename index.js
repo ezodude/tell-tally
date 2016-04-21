@@ -9,6 +9,10 @@ const csv           = require('fast-csv')
     , h             = require('highland')
     , chargeStream  = require('./providers/rbs').chargeStream;
 
+const add = function (a, b) {
+  return a + (b.value * -1);
+};
+
 program
 .usage('[options] <file>')
 .arguments('<file>')
@@ -28,8 +32,9 @@ program
 
   h(base)
   .through(chargeStream)
+  .reduce(0, add)
   .doto(console.log)
-  .collect()
+  // .collect()
   .stopOnError( console.log )
   .each((rows) => { console.log('READING DONE!') });
 
