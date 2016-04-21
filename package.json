@@ -1,7 +1,7 @@
 {
-  "name": "tell-tally",
+  "name": "telltally",
   "version": "0.0.1",
-  "description": "CLI to explore how much was spent on stuff. E.g. shopping, coffee, transport etc..",
+  "description": "A calculator that calculates spending.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,13 +13,16 @@
   "keywords": [
     "highland.js",
     "streams",
-    "personal finance"
+    "spending calculator"
+    "personal finance calculator",
+    "personal spending calculator",
+    "banking"
   ],
   "author": "Ezo Saleh <npm@ezosaleh.com> (http://ezosaleh.com/)",
   "license": "GPL-3.0",
   "preferGlobal": true,
   "bin": {
-    "tt": "index.js"
+    "tt": "bin/cmd.js"
   },
   "bugs": {
     "url": "https://github.com/ezodude/tell-tally/issues"
