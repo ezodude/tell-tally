@@ -2,7 +2,8 @@
 
 'use strict';
 
-const csv           = require('fast-csv')
+const _             = require('lodash')
+    , csv           = require('fast-csv')
     , program       = require('commander')
     , config        = require('config')
     , chalk         = require('chalk')
@@ -11,18 +12,26 @@ const csv           = require('fast-csv')
     , telltally  = require('../');
 
 program
-.usage('[options] <transactions.csv>')
-.description('Calculate your spending from a transactions or statement csv.')
-.arguments('<file>')
+.usage('[options] <transactions.csv> <provider>')
+.description('Calculate your spending from a transactions or statement csv.\n\n' + '  Provider options:\n\n  * rbs: Royal Bank of Scotland')
+.arguments('<file> <provider>')
 .option('-s, --start-date <ISODate>', 'Calculation start date.')
 .option('-h, --household', 'Calculate household expenses.')
 .option('-e, --eating-out', 'Calculate household expenses.')
 .option('-c, --coffee-out', 'Calculate coffee out expenses.')
 .option('-t, --transport', 'Calculate transport expenses.')
-.action(file => {
+.action((file, provider) => {
+  const opts = {
+    dictionary: config,
+    startDate: program.startDate,
+    provider: provider
+  };
 
-  const tt = telltally(file, { startDate: program.startDate });
-  console.log('tt.startDate', tt.startDate);
+  const tt = telltally(file, opts);
+  _.keys(config).map(key => _.camelCase(key)).forEach(expense => {
+    if(program.hasOwnProperty(expense)) { tt.calculate(expense); }
+  });
+  tt.tally();
 
   console.log(chalk.inverse.blue(">|>| YOUR TALLY |<|<"));
   console.log(chalk.bold.magenta("Start date    :" + "2016-02-28T00:00:00Z"));
