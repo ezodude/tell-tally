@@ -1,1 +1,3 @@
-# tell-tally
+# telltally
+
+A calculator that calculates spending.
