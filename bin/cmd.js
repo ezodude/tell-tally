@@ -27,7 +27,8 @@ program
     provider: provider
   };
 
-  const tt = telltally(file, opts);
+  const tt = telltally(opts);
+  tt.transactionsFrom(file);
   _.keys(config).map(key => _.camelCase(key)).forEach(expense => {
     if(program.hasOwnProperty(expense)) { tt.calculate(expense); }
   });
