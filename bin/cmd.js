@@ -9,7 +9,7 @@ const _             = require('lodash')
     , chalk         = require('chalk')
     , h             = require('highland')
     , chargeStream  = require('./../providers/rbs').chargeStream
-    , telltally  = require('../');
+    , telltally     = require('../');
 
 program
 .usage('[options] <transactions.csv> <provider>')
@@ -32,14 +32,13 @@ program
   _.keys(config).map(key => _.camelCase(key)).forEach(expense => {
     if(program.hasOwnProperty(expense)) { tt.calculate(expense); }
   });
-  tt.tally();
-
-  console.log(chalk.inverse.blue(">|>| YOUR TALLY |<|<"));
-  console.log(chalk.bold.magenta("Start date    :" + "2016-02-28T00:00:00Z"));
-  console.log(chalk.green("Household     :" + "£200.00"));
-  console.log(chalk.green("Coffee        :" + "£30.00"));
-  console.log(chalk.green("Transport     :" + "£25.00"));
-  console.log(chalk.green("Config (prufrock )     :" + config.get('coffee_out.prufrock_coffee_limited')));
+  tt.tally((err, tally) => {
+    console.log(chalk.inverse.blue(">|>| YOUR TALLY |<|<"));
+    // console.log(chalk.bold.magenta("Start date    :" + program.startDate));
+    console.log(chalk.green('Coffee Out       : £', tally.coffeeOut));
+    console.log(chalk.green('Eating Out       : £', tally.eatingOut));
+    console.log(chalk.green('Final total      : £', tally.total));
+  });
 })
 .parse(process.argv);
 
