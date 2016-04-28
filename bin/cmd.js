@@ -17,7 +17,7 @@ program
 .arguments('<file> <provider>')
 .option('-s, --start-date <ISODate>', 'Calculation start date.')
 .option('-g, --grocery', 'Calculate grocery expenses.')
-.option('-e, --eating-out', 'Calculate household expenses.')
+.option('-e, --eating-out', 'Calculate eating out expenses.')
 .option('-c, --coffee-out', 'Calculate coffee out expenses.')
 .option('-t, --transport', 'Calculate transport expenses.')
 .action((file, provider) => {
