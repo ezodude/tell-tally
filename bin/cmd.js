@@ -32,12 +32,19 @@ program
   _.keys(config).map(key => _.camelCase(key)).forEach(expense => {
     if(program.hasOwnProperty(expense)) { tt.calculate(expense); }
   });
-  tt.tally((err, tally) => {
+  tt.tally((err, tallies) => {
+    if(err) { return console.log('Tallying error:', err); }
+
     console.log(chalk.inverse.blue(">|>| YOUR TALLY |<|<"));
-    // console.log(chalk.bold.magenta("Start date    :" + program.startDate));
-    console.log(chalk.green('Coffee Out       : £', tally.coffeeOut));
-    console.log(chalk.green('Eating Out       : £', tally.eatingOut));
-    console.log(chalk.green('Final total      : £', tally.total));
+
+    const total = tallies.total;
+    delete tallies.total;
+
+    _.keys(tallies).forEach(expense => {
+      const expenseName = _.capitalize(_.snakeCase(expense).split(/\_/g).join(' '));
+      console.log(chalk.green(`${expenseName} => £ ${tallies[expense]}`));
+    });
+    console.log(chalk.green(`Final total => £ ${total}`));
   });
 })
 .parse(process.argv);
