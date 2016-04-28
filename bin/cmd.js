@@ -16,7 +16,7 @@ program
 .description('Calculate your spending from a transactions or statement csv.\n\n' + '  Provider options:\n\n  * rbs: Royal Bank of Scotland')
 .arguments('<file> <provider>')
 .option('-s, --start-date <ISODate>', 'Calculation start date.')
-.option('-h, --household', 'Calculate household expenses.')
+.option('-g, --grocery', 'Calculate grocery expenses.')
 .option('-e, --eating-out', 'Calculate household expenses.')
 .option('-c, --coffee-out', 'Calculate coffee out expenses.')
 .option('-t, --transport', 'Calculate transport expenses.')
