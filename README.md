@@ -2,7 +2,7 @@
 
 A calculator that calculates spending.
 
-# Example
+## Example
 
 This will tally coffee out, eating out, household and transport spend directly from your bank statement. For now, RBS is the only bank we support.
 
@@ -10,7 +10,7 @@ This will tally coffee out, eating out, household and transport spend directly f
 $ tt -c -e -h -t path/to/bank-statement.csv rbs
 ```
 
-# Help us supported more banks
+## Lets support more banks
 
 For now, we only support parsing RBS statments. But it would be awesome if we can support where you bank!
 
