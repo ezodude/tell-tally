@@ -36,6 +36,7 @@
     "fast-csv": "^1.0.0",
     "highland": "^2.7.1",
     "lodash": "^4.6.1",
+    "moment": "^2.13.0",
     "money-math": "^2.4.0",
     "toml": "^2.3.0"
   }

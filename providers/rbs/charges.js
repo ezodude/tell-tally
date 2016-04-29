@@ -1,8 +1,9 @@
 'use strict';
 
-const h     = require('highland')
-    , _     = require('lodash')
-    , money = require("money-math");
+const h       = require('highland')
+    , _       = require('lodash')
+    , moment  = require('moment')
+    , money   = require("money-math");
 
 const RBS_CHARGE_TYPES = ['DPC', 'POS', 'S/O', 'D/D'];
 
@@ -13,7 +14,7 @@ const transforms = {
     const normalised = money.floatToAmount(value < 0 ? (-1 * value) : value);
 
     return {
-      date: c[0].trim(),
+      date: moment.utc(c[0].trim(), "DD-MM-YYYY").toISOString(),
       type: c[1].trim(),
       source: _.isString(source) ? source.toLowerCase().trim() : null,
       value: normalised

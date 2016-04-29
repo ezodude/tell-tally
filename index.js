@@ -4,6 +4,7 @@ const _          = require('lodash')
     , csv        = require('fast-csv')
     , h          = require('highland')
     , providers  = require('./providers')
+    , moment     = require('moment')
     , money      = require("money-math");
 
 module.exports = Tally;
@@ -12,7 +13,7 @@ function Tally(opts) {
   if (!(this instanceof Tally)) return new Tally(opts);
   opts = opts || {};
   this.dictionary = opts.dictionary;
-  this.startDate = opts.startDate;
+  this.fromDate = opts.fromDate;
   this.provider = providers[opts.provider] || providers.default;
   this.calculations = [];
 }
@@ -26,6 +27,7 @@ Tally.prototype.transactionsFrom = function (file) {
     trim: true
   });
   this.transactions = h(stream).through(this.provider);
+  if(this.fromDate){ this.transactions = this.transactions.reject( t => moment(t.date).isBefore(this.fromDate) ); }
 };
 
 Tally.prototype.calculate = function (expense) {
@@ -40,6 +42,7 @@ Tally.prototype.tally = function (cb) {
 
   h(this.calculations)
   .merge()
+  .reject(group => group.length === 0)
   .each(group => {
     result[group[0].expense] = _.reduce(group, (sum, n) => money.add(sum, n.value), money.centsToAmount('0'));
   })

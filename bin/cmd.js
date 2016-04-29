@@ -8,14 +8,21 @@ const _             = require('lodash')
     , config        = require('config')
     , chalk         = require('chalk')
     , h             = require('highland')
-    , chargeStream  = require('./../providers/rbs').chargeStream
+    , moment        = require('moment')
     , telltally     = require('../');
+
+
+function parseDate(val){
+  let result = moment.utc(val, "DD-MM-YYYY");
+  if(!result.isValid()) { throw "Invalid from date. Please use the correct format [DD-MM-YYYY]."; }
+  return result.toISOString();
+}
 
 program
 .usage('[options] <transactions.csv> <provider>')
 .description('Calculate your spending from a transactions or statement csv.\n\n' + '  Provider options:\n\n  * rbs: Royal Bank of Scotland')
 .arguments('<file> <provider>')
-.option('-s, --start-date <ISODate>', 'Calculation start date.')
+.option('-d, --from-date [DD-MM-YYYY]', 'Start calculating from this date.', parseDate)
 .option('-g, --grocery', 'Calculate grocery expenses.')
 .option('-e, --eating-out', 'Calculate eating out expenses.')
 .option('-c, --coffee-out', 'Calculate coffee out expenses.')
@@ -23,7 +30,7 @@ program
 .action((file, provider) => {
   const opts = {
     dictionary: config,
-    startDate: program.startDate,
+    fromDate: program.fromDate,
     provider: provider
   };
 
