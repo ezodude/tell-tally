@@ -1,22 +1,23 @@
 {
-  "name": "telltally",
+  "name": "tt-calc",
   "version": "0.0.1",
-  "description": "A calculator that calculates spending.",
+  "description": "Part of the Tell Tally suite. A calculator that calculates spending.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ezodude/tell-tally.git"
+    "url": "git+https://github.com/ezodude/tt-calc.git"
   },
   "keywords": [
-    "highland.js",
-    "streams",
+    "pfm",
     "spending calculator",
     "personal finance calculator",
     "personal spending calculator",
-    "banking"
+    "banking",
+    "tell tally",
+    "tell tally calc"
   ],
   "author": "Ezo Saleh <npm@ezosaleh.com> (http://ezosaleh.com/)",
   "license": "GPL-3.0",
@@ -25,9 +26,9 @@
     "tt": "bin/cmd.js"
   },
   "bugs": {
-    "url": "https://github.com/ezodude/tell-tally/issues"
+    "url": "https://github.com/ezodude/tt-calc/issues"
   },
-  "homepage": "https://github.com/ezodude/tell-tally#readme",
+  "homepage": "https://github.com/ezodude/tt-calc#readme",
   "dependencies": {
     "chalk": "^1.1.1",
     "commander": "^2.9.0",
