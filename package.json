@@ -23,7 +23,7 @@
   "license": "GPL-3.0",
   "preferGlobal": true,
   "bin": {
-    "tt": "bin/cmd.js"
+    "tt-calc": "bin/cmd.js"
   },
   "bugs": {
     "url": "https://github.com/ezodude/tt-calc/issues"
