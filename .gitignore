@@ -37,3 +37,4 @@ TODO*.txt
 
 # Ignore *.file
 .*.*
+test.json
