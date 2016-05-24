@@ -29,7 +29,7 @@ program
 .option('-t, --transport', 'Calculate transport expenses.')
 .action(chargesPath => {
 
-  const charges = h.wrapCallback(fs.readFile)(chargesPath).map(JSON.parse);
+  const charges = h.wrapCallback(fs.readFile)(chargesPath).flatMap(JSON.parse);
   const tt = telltally(charges, {
     dictionary: config,
     fromDate: program.fromDate
