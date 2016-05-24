@@ -2,8 +2,8 @@
 
 'use strict';
 
-const _             = require('lodash')
-    , csv           = require('fast-csv')
+const fs            = require('fs')
+    , _             = require('lodash')
     , program       = require('commander')
     , config        = require('config')
     , chalk         = require('chalk')
@@ -19,26 +19,26 @@ function parseDate(val){
 }
 
 program
-.usage('[options] <transactions.csv> <provider>')
-.description('Calculate your spending from a transactions or statement csv.\n\n' + '  Provider options:\n\n  * rbs: Royal Bank of Scotland')
-.arguments('<file> <provider>')
+.usage('[options] <charges.json>')
+.description('Calculate spending from charges created using TT-translate.')
+.arguments('<file>')
 .option('-d, --from-date [DD-MM-YYYY]', 'Start calculating from this date.', parseDate)
 .option('-g, --grocery', 'Calculate grocery expenses.')
 .option('-e, --eating-out', 'Calculate eating out expenses.')
 .option('-c, --coffee-out', 'Calculate coffee out expenses.')
 .option('-t, --transport', 'Calculate transport expenses.')
-.action((file, provider) => {
-  const opts = {
-    dictionary: config,
-    fromDate: program.fromDate,
-    provider: provider
-  };
+.action(chargesPath => {
 
-  const tt = telltally(opts);
-  tt.transactionsFrom(file);
+  const charges = h.wrapCallback(fs.readFile)(chargesPath).map(JSON.parse);
+  const tt = telltally(charges, {
+    dictionary: config,
+    fromDate: program.fromDate
+  });
+
   _.keys(config).map(key => _.camelCase(key)).forEach(expense => {
     if(program.hasOwnProperty(expense)) { tt.calculate(expense); }
   });
+
   tt.tally((err, tallies) => {
     if(err) { return console.log('Tallying error:', err); }
 
